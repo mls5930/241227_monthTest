@@ -10,12 +10,13 @@
         <li>유저 네임</li>
         <li>제목</li>
         <li>내용</li>
-        <ii><a href="./create">작성하러가기</a></ii>
+        <li><a href="./create">작성하러가기</a></li>
+        <li><a href="./list">리스트</a></li>
     </ul>
     {% for item in userList %}
-    <div id="listId"></div>
+    <div id="listId">
         <div>{{ item.writer }}</div>
-        <div><a></a>{{ item.title }}</div>
+        <div><a href="./view/{{item.id}}">{{ item.title }}</a></div>
         <div>{{ item.content }}</div>
     </div>
     {% endfor %}

@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>뷰페이지</title>
+    <title>뷰 페이지 </title>
 </head>
 <body>
-    
+    <ul>
+        <li>유저 네임</li>
+        <li>제목</li>
+        <li>내용</li>
+        <ii><a href="/create">작성하러가기</a></ii>
+    </ul>
+    <ul>
+        <li>{{List.writer}}</li>
+        <li>{{List.title}}</li>
+        <li>{{List.content}}</li>
+    </ul>
+ 
 </body>
 </html>
+
+<!-- <form method="post" action="/view">
+    <input type="text" name ="writer">{{List.writer}}
+    <input type="text" name ="title">
+    <input type="text" name ="content">
+    <button type="submit"></button>
+</form> -->

@@ -22,7 +22,6 @@ const userList = [
 
 app.listen(3000,() => {
     console.log(`서버가 잘 열렸는지 확인`);
-    
 })
 
 app.get(`/create`,(rep,res) => {
@@ -36,7 +35,6 @@ app.post(`/create`,(rep,res) => {
 
     const user = 
     {
-        
         id: index+1,
         user_id: `rhgPtjd`,
         writer: writer,
@@ -45,22 +43,31 @@ app.post(`/create`,(rep,res) => {
         hit: 0, 
     }
     userList.push(user)
-    res.redirect(`/list`)
+    res.redirect(`/list?id=${user.id}`)
+    
 })
 
 app.get(`/list`,(rep,res) => {
+    const id = parseInt(rep.query.id)
+
     res.render(path+"/list.html",{
         userList
     })
+})
+app.get(`/view/:id`,(rep,res) => {
+    const id =parseInt(rep.params.id)
+    console.log(id);
+    const List = userList.find((value) => value.id === id);
+    console.log(List);
+    
+    
+    res.render(path+"/view.html",{
+        List
+    })
+    
+    
+})
 
-})
-app.get(`/view`,(rep,res) => {
-    
-})
-app.post(`/view`,(rep,res) => {
-   
-    
-})
 app.get(`/modify`,(rep,res) => {
     console.log(`모디파이 잘 열렸는지 확인`);
 })
