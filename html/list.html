@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저 목록</title>
+</head>
+<body>
+    <ul>
+        <li>유저 네임</li>
+        <li>제목</li>
+        <li>내용</li>
+        <ii><a href="./create">작성하러가기</a></ii>
+    </ul>
+    {% for item in userList %}
+    <div id="listId"></div>
+        <div>{{ item.writer }}</div>
+        <div><a></a>{{ item.title }}</div>
+        <div>{{ item.content }}</div>
+    </div>
+    {% endfor %}
+</body>
+</html>
