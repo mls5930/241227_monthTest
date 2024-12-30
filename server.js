@@ -38,12 +38,11 @@ app.post(`/create`,(req,res) => {
         hit: 0, 
     }
     userList.push(user)
-    res.redirect(`/list?id=${user.id}`)
+    res.redirect(`/list`)
 })
 
 app.get(`/list`,(req,res) => {
-    const id = parseInt(req.query.id)
-
+    
     res.render(path+"/list.html",{
         userList
     })
