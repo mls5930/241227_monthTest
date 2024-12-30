@@ -18,7 +18,9 @@
         <li>{{List.title}}</li>
         <li>{{List.content}}</li>
         <button type="button"><a href="/modify/{{List.id}}">수정하러가기</a></button>
-        <button type="button"><a href="/delete/{{List.id}}">삭제하러가기</a></button>
+        <form action="/delete/{{List.id}}" method="post">
+            <button type="submit">삭제하러가기</button>
+        </form>
     </ul>
 </body>
 </html>
