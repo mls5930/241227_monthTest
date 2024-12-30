@@ -26,7 +26,7 @@ app.get(`/create`,(req,res) => {
 
 app.post(`/create`,(req,res) => {
     const { writer, title, content} = req.body
-    console.log(writer, title, content);
+
     const index = userList[userList.length-1].id+1
 
     const user = {
@@ -50,10 +50,7 @@ app.get(`/list`,(req,res) => {
 })
 app.get(`/view/:id`,(req,res) => {
     const id =parseInt(req.params.id)
-    console.log(id);
     const List = userList.find((value) => value.id === id);
-    console.log(List);
-    
     
     res.render(path+"/view.html",{
         List
@@ -81,6 +78,20 @@ app.post(`/modify/:id`,(req,res) => {
     userList[index].content = content
     res.redirect(`/list`)
 })
+app.post(`/delete/:id`,(req,res) => {
+    const id =parseInt(req.params.id);
+    const index =userList.findIndex((value)=> value.id === id);
+    if(index === -1){
+        res.status(404).send("아이디를 찾지 못하였습니다.")
+    }
+
+    console.log(userList);
+    console.log(index);
+    userList.splice(index,1)
+    res.redirect(`/list`)
+})
+
+
 
 
 app.listen(3000,() => {
