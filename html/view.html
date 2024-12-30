@@ -11,13 +11,15 @@
         <li>제목</li>
         <li>내용</li>
         <ii><a href="/create">작성하러가기</a></ii>
+        
     </ul>
     <ul>
         <li>{{List.writer}}</li>
         <li>{{List.title}}</li>
         <li>{{List.content}}</li>
+        <button type="button"><a href="/modify/{{List.id}}">수정하러가기</a></button>
+        <button type="button"><a href="/delete/{{List.id}}">삭제하러가기</a></button>
     </ul>
- 
 </body>
 </html>
 
