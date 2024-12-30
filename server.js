@@ -20,17 +20,17 @@ const userList = [
     }
 ];
 
-app.get(`/create`,(rep,res) => {
+app.get(`/create`,(req,res) => {
    res.sendfile(path + "/create.html")
 })
 
-app.post(`/create`,(rep,res) => {
-    const { writer, title, content} = rep.body
+app.post(`/create`,(req,res) => {
+    const { writer, title, content} = req.body
     console.log(writer, title, content);
-    const index = userList[userList.length-1].id
+    const index = userList[userList.length-1].id+1
 
     const user = {
-        id: index+1,
+        id: index,
         user_id: `rhgPtjd`,
         writer: writer,
         title: title,
@@ -41,15 +41,15 @@ app.post(`/create`,(rep,res) => {
     res.redirect(`/list?id=${user.id}`)
 })
 
-app.get(`/list`,(rep,res) => {
-    const id = parseInt(rep.query.id)
+app.get(`/list`,(req,res) => {
+    const id = parseInt(req.query.id)
 
     res.render(path+"/list.html",{
         userList
     })
 })
-app.get(`/view/:id`,(rep,res) => {
-    const id =parseInt(rep.params.id)
+app.get(`/view/:id`,(req,res) => {
+    const id =parseInt(req.params.id)
     console.log(id);
     const List = userList.find((value) => value.id === id);
     console.log(List);
@@ -62,9 +62,26 @@ app.get(`/view/:id`,(rep,res) => {
     
 })
 
-app.get(`/modify`,(rep,res) => {
-    console.log(`모디파이 잘 열렸는지 확인`);
+app.get(`/modify/:id`,(req,res) => {
+    const id =parseInt(req.params.id)
+    const List =userList.find((value)=> value.id === id);
+    res.render(path+`/modify.html`,{
+        List
+    })
 })
+app.post(`/modify/:id`,(req,res) => {
+    const id =parseInt(req.params.id);
+    const {writer, title, content }= req.body
+    const index =userList.findIndex((value)=> value.id === id);
+    if(index === -1){
+        res.status(404).send("아이디를 찾지 못하였습니다.")
+    }
+    userList[index].writer =writer
+    userList[index].title = title
+    userList[index].content = content
+    res.redirect(`/list`)
+})
+
 
 app.listen(3000,() => {
     console.log(`서버가 잘 열렸는지 확인`);
