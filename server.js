@@ -20,21 +20,16 @@ const userList = [
     }
 ];
 
-app.listen(3000,() => {
-    console.log(`서버가 잘 열렸는지 확인`);
+app.get(`/create`,(rep,res) => {
+   res.sendfile(path + "/create.html")
 })
 
-app.get(`/create`,(rep,res) => {
-   res.sendfile(path+"/create.html")
-    
-})
 app.post(`/create`,(rep,res) => {
-    const { writer, title, content}=rep.body
+    const { writer, title, content} = rep.body
     console.log(writer, title, content);
     const index = userList[userList.length-1].id
 
-    const user = 
-    {
+    const user = {
         id: index+1,
         user_id: `rhgPtjd`,
         writer: writer,
@@ -44,7 +39,6 @@ app.post(`/create`,(rep,res) => {
     }
     userList.push(user)
     res.redirect(`/list?id=${user.id}`)
-    
 })
 
 app.get(`/list`,(rep,res) => {
@@ -70,4 +64,8 @@ app.get(`/view/:id`,(rep,res) => {
 
 app.get(`/modify`,(rep,res) => {
     console.log(`모디파이 잘 열렸는지 확인`);
+})
+
+app.listen(3000,() => {
+    console.log(`서버가 잘 열렸는지 확인`);
 })
