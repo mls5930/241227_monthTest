@@ -6,6 +6,17 @@
     <title>유저 수정</title>
 </head>
 <body>
-    
+    <ul>
+        <li>유저 네임</li>
+        <li>제목</li>
+        <li>내용</li>
+        <ii><a href="/list">리스트로 돌아가기</a></ii>
+    </ul>
+   <form action="/modify/{{List.id}}" method="post">
+    <input type="text" name="writer" value="{{List.writer}}">
+    <input type="text" name="title" value="{{List.title}}">
+    <input type="text" name="content" value="{{List.content}}">
+    <button type="submit">수정하기</button>
+   </form>
 </body>
 </html>
